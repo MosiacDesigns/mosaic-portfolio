@@ -2,18 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .bg-primary {
+    background-color: theme('colors.primary'); /* Using the primary color from Tailwind config */
   }
 }
 
 @layer base {
-  :root {
-    --radius: 0.5rem;
+  body {
+    @apply font-primary bg-primary text-white leading-loose
   }
 }
