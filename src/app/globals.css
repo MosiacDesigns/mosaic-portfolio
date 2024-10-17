@@ -5,7 +5,6 @@
 @layer utilities {
   .bg-primary {
     background-color: theme('colors.primary');
-    /* Using the primary color from Tailwind config */
   }
 }
 
