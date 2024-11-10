@@ -57,9 +57,9 @@ export default function ContactPage() {
                 Let&apos;s work together
               </h3>
               <p className="text-white/60">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                faucibus imperdiet tincidunt. Maecenas maximus imperdiet
-                vestibulum.
+                We’re a skilled team in software design and development,
+                delivering top-notch projects and products to bring your ideas
+                to life.
               </p>
               {/* input */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
