@@ -25,8 +25,8 @@ const config: Config = {
       colors: {
         primary: "#1c1c22",
         accent: {
-          DEFAULT: "#00ff99",
-          hover: "#00e187",
+          DEFAULT: "#FF6F00",
+          hover: "#FF6F00",
         },
       },
       borderRadius: {
