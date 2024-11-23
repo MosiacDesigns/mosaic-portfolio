@@ -2,7 +2,7 @@
 import React from "react";
 import { FaEnvelope, FaMapMarkedAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
-import CalendlyWidget from "@/components/Calendly/CalendlyWidget";
+import CalendlyWidget from "@/components/design-system/molecules/Calendly/CalendlyWidget";
 
 const info = [
   // {

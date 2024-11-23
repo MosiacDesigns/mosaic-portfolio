@@ -1,0 +1,68 @@
+import { RiNextjsFill } from "react-icons/ri";
+import { FaReact, FaHtml5, FaNodeJs, FaVuejs, FaFigma } from "react-icons/fa";
+import {
+  SiSolana,
+  SiNestjs,
+  SiDjango,
+  SiBootstrap,
+  SiGraphql,
+  SiMongodb,
+  SiMysql,
+  SiPostgresql,
+  SiJavascript,
+  SiTypescript,
+  SiAdobephotoshop,
+  SiNotion,
+  SiRust,
+  SiShopify,
+  SiWordpress,
+} from "react-icons/si";
+import { MdVideoSettings } from "react-icons/md";
+
+const iconStyles = { width: "54px", height: "54px" };
+
+const technologies = [
+  { name: "React.js", icon: <FaReact style={iconStyles} /> },
+  { name: "Next.js", icon: <RiNextjsFill style={iconStyles} /> },
+  { name: "Vue.js", icon: <FaVuejs style={iconStyles} /> },
+  { name: "Bootstrap", icon: <SiBootstrap style={iconStyles} /> },
+  { name: "Solana", icon: <SiSolana style={iconStyles} /> },
+  { name: "Rust", icon: <SiRust style={iconStyles} /> }, 
+  { name: "NestJS", icon: <SiNestjs style={iconStyles} /> },
+  { name: "Django", icon: <SiDjango style={iconStyles} /> },
+  { name: "Apollo GraphQL", icon: <SiGraphql style={iconStyles} /> },
+  { name: "MongoDB", icon: <SiMongodb style={iconStyles} /> },
+  { name: "MySQL", icon: <SiMysql style={iconStyles} /> },
+  { name: "PostgreSQL", icon: <SiPostgresql style={iconStyles} /> },
+  { name: "JavaScript", icon: <SiJavascript style={iconStyles} /> },
+  { name: "Node.js", icon: <FaNodeJs style={iconStyles} /> },
+  { name: "TypeScript", icon: <SiTypescript style={iconStyles} /> },
+  { name: "Figma", icon: <FaFigma style={iconStyles} /> },
+  { name: "Photoshop", icon: <SiAdobephotoshop style={iconStyles} /> },
+  { name: "DaVinci Resolve", icon: <MdVideoSettings style={iconStyles} /> },
+  { name: "Notion", icon: <SiNotion style={iconStyles} /> },
+  { name: "Shopify", icon: <SiShopify style={iconStyles} /> },
+  { name: "WordPress", icon: <SiWordpress style={iconStyles} /> },
+];
+
+const TechnologiesSection = () => {
+  return (
+    <section className="mt-5 py-24 bg-dark">
+      <div className="container mx-auto">
+        <h2 className="text-5xl text-center text-white mb-12">
+          <span className="text-accent font-bold">Technologies</span> We Work On
+        </h2>
+        <div className="flex flex-wrap justify-center gap-12 mt-5">
+          {technologies.map((tech, index) => (
+            <div className="flex flex-col justify-center items-center" key={index}>
+              {tech.icon}
+              <p className="mt-4 text-center text-white">{tech.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TechnologiesSection;
