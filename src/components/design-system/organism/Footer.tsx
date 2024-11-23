@@ -3,14 +3,11 @@ const Footer = () => {
     <footer className="py-8 bg-dark">
       <div className="container mx-auto flex flex-col items-center gap-4 text-white">
         <div className="flex gap-6">
-          <a href="https://twitter.com" className="text-accent">
+          <a href="https://x.com/MosaicDesigns06" className="text-accent">
             Twitter
           </a>
-          <a href="https://linkedin.com" className="text-accent">
-            LinkedIn
-          </a>
-          <a href="https://github.com" className="text-accent">
-            GitHub
+          <a href="https://www.instagram.com/mosaicdesigns06/" className="text-accent">
+            Instagram
           </a>
         </div>
         <p className="mt-4 text-sm">

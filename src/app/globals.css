@@ -4,24 +4,50 @@
 
 @layer utilities {
   .bg-primary {
-    background-color: theme('colors.primary');
+    background-color: theme("colors.primary");
   }
 }
 
 @layer base {
   body {
-    @apply font-primary bg-primary text-white leading-loose
+    @apply font-primary bg-primary text-white leading-loose;
   }
 
   .h1 {
-    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold
+    @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
   }
 
   .h2 {
-    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold
+    @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
   }
 
   .h3 {
-    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold
+    @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
   }
+}
+
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  top: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(0, 0, 0);
+  color: #FF6F00;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 0.5rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }

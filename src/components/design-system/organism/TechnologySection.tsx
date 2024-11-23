@@ -63,7 +63,7 @@ const TechnologiesSection = () => {
           transition={{
             repeat: Infinity,
             duration: 15,
-            ease: "easeInOut",
+            ease: "easeIn",
           }}
         >
           {infiniteTechnologies.map((tech, index) => (
