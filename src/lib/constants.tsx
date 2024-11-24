@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
   {
     title: "OGGames - Web3 Board Game Platform",
     description:
-      "A Web3 board game platform using Next.js, NestJS, Redis, Solana, and Figma for design.",
+      "A Web3 board game platform using solana tokens.",
     image: "/assets/ogGames.png",
     technologies: [
       "NextJs",
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Transquil - Global Travel Website",
     description:
-      "A platform for global travelers, designed with Figma and built using Next.js and Framer Motion.",
+      "A platform for global travelers aim to match like minded people.",
     image: "/assets/transquil.png",
     technologies: [
       "NextJs",
@@ -71,7 +71,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Designer Portfolio",
     description:
-      "A portfolio showcasing an experienced designer's work with Framer Motion, Figma, and custom coding.",
+      "A portfolio showcasing an experienced designer's work.",
     image: "/assets/sanjayRayon.png",
     technologies: ["Framer_Motion", "Figma", "HTML", "CSS", "JavaScript"],
     timeline: "3 months",
@@ -80,10 +80,10 @@ export const PROJECTS: Project[] = [
   {
     title: "Kaarigar Connect",
     description:
-      "Web3 platform for service providers using Next.js, TailwindCSS,.",
+      "Web3 platform for service providers using KARCON tokens.",
     image: "/assets/kaarigar.png",
     technologies: ["NextJs", "Framer_Motion", "MUI", "Figma"],
     timeline: "2 months",
-    client: "Webllisto Tecnologies",
+    client: "Webllisto Tech.",
   },
 ];

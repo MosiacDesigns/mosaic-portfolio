@@ -1,6 +1,6 @@
 const TestimonialsSection = () => {
   return (
-    <section className="py-24 bg-dark">
+    <section className="pt-24 md:pt-0 pb-24 bg-dark">
       <div className="container mx-auto">
         <h2 className="text-3xl text-center text-white mb-12">
           What Our Clients Say
