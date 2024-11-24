@@ -19,10 +19,11 @@ export interface ProjectCardProps extends Project {
 
 const ProjectsSection = () => {
   return (
-    <section className="py-24 bg-dark">
+    <section className="pt-24 md:pt-0 pb-24 bg-dark">
       <div className="container mx-auto">
-        <h2 className="text-3xl text-center text-white mb-12">
-          Projects We’ve Worked On
+        <h2 className="text-5xl text-center text-white mb-12">
+          <span className="text-accent font-bold">Projects</span> We’ve Worked
+          On
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-12">
           {PROJECTS.map((project, index) => (
@@ -63,7 +64,7 @@ const ProjectCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
       whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-      transition={{ delay: index * 0.3, duration: 0.5 }}
+      transition={{ delay: index * 0.3, duration: 0.3 }}
     >
       <Image
         src={image}

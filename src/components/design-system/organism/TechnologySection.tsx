@@ -51,13 +51,13 @@ const TechnologiesSection = () => {
   const infiniteTechnologies = [...technologies, ...technologies];
 
   return (
-    <section className="mt-5 py-24 bg-dark">
+    <section className="mt-5 py-0 md:py-24 bg-dark">
       <div className="mx-auto overflow-hidden">
         <h2 className="text-5xl text-center text-white mb-20">
           <span className="text-accent font-bold">Technologies</span> We Work On
         </h2>
         <motion.div
-          className="flex gap-12 items-center"
+          className="flex gap-0 md:gap-12 items-center"
           style={{ whiteSpace: "nowrap" }}
           animate={{ x: ["0%", "-100%"] }}
           transition={{
