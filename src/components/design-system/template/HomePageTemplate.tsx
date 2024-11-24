@@ -12,7 +12,7 @@ const HomePageTemplate = () => {
       <Stats />
       <TechnologiesSection />
       <ProjectsSection />
-      {/* <TestimonialsSection /> */}
+      <TestimonialsSection />
       <Footer />
     </section>
   );
