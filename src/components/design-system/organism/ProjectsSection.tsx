@@ -19,7 +19,7 @@ export interface ProjectCardProps extends Project {
 
 const ProjectsSection = () => {
   return (
-    <section className="pt-24 md:pt-0 pb-24 bg-dark">
+    <section id="projects" className="pt-24 md:pt-0 pb-24 bg-dark">
       <div className="container mx-auto">
         <h2 className="text-5xl text-center text-white mb-12">
           <span className="text-accent font-bold">Projects</span> We’ve Worked
