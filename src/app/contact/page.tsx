@@ -18,7 +18,7 @@ const info = [
   {
     icon: <FaMapMarkedAlt />,
     title: "Address",
-    description: "Malad east, Mumbai",
+    description: "UAE - United States - India",
   },
 ];
 
