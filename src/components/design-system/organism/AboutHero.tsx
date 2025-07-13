@@ -35,7 +35,7 @@ const AboutHero = () => {
 
   return (
     <motion.section
-      className="pt-32 pb-24 bg-gradient-to-br from-primary via-primary/95 to-primary/90"
+      className="pt-20 pb-24 bg-gradient-to-br from-primary via-primary/95 to-primary/90"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

@@ -1,5 +1,7 @@
-import React from "react";
+import ServicesPageTemplate from "@/components/design-system/template/ServicesPageTemplate";
 
-export default function Services() {
-  return <div>Services page</div>;
-}
+const Services = () => {
+  return <ServicesPageTemplate />;
+};
+
+export default Services;
