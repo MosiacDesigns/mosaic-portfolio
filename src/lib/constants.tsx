@@ -1,7 +1,7 @@
 import { Project } from "@/components/design-system/organism/ProjectsSection";
 
 import { RiNextjsFill } from "react-icons/ri";
-import { FaReact, FaFigma } from "react-icons/fa";
+import { FaReact, FaFigma, FaHtml5, FaCss3 } from "react-icons/fa";
 import {
   SiSolana,
   SiNestjs,
@@ -11,11 +11,9 @@ import {
   SiTypescript,
   SiAdobephotoshop,
   SiRedis,
+  SiMui,
 } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
-import { FaHtml5 } from "react-icons/fa";
-import { FaCss3 } from "react-icons/fa";
-import { SiMui } from "react-icons/si";
 
 export const TECHNOLOGIES_ICON: { [key: string]: JSX.Element } = {
   NextJs: <RiNextjsFill />,
@@ -38,8 +36,7 @@ export const TECHNOLOGIES_ICON: { [key: string]: JSX.Element } = {
 export const PROJECTS: Project[] = [
   {
     title: "OGGames - Web3 Board Game Platform",
-    description:
-      "A Web3 board game platform using solana tokens.",
+    description: "A Web3 board game platform using solana tokens.",
     image: "/assets/ogGames.png",
     technologies: [
       "NextJs",
@@ -54,36 +51,33 @@ export const PROJECTS: Project[] = [
     client: "OGGames",
   },
   {
-    title: "Transquil - Global Travel Website",
-    description:
-      "A platform for global travelers aim to match like minded people.",
-    image: "/assets/transquil.png",
-    technologies: [
-      "NextJs",
-      "Framer_Motion",
-      "Photoshop",
-      "Figma",
-      "Typescript",
+    title: "Fortify - Web3 Stablecoin Yield Platform",
+    description: "Mobile web3 app for earning yields on stablecoins.",
+    image: "/assets/Fortify landing.png",
+    images: [
+      "/assets/Fortify landing.png",
+      "/assets/Fortify Dashboard.png",
+      "/assets/Fortify Txs.png",
     ],
-    timeline: "6 months",
-    client: "Transquil Global",
+    isMobile: true,
+    technologies: ["React", "Solana", "Figma", "Typescript"],
+    timeline: "1 month",
+    client: "Build Squad",
   },
   {
     title: "Designer Portfolio",
-    description:
-      "A portfolio showcasing an experienced designer's work.",
+    description: "A portfolio showcasing an experienced designer's work.",
     image: "/assets/sanjayRayon.png",
     technologies: ["Framer_Motion", "Figma", "HTML", "CSS", "JavaScript"],
     timeline: "3 months",
-    client: "Self",
+    client: "Sanjay Rayon",
   },
   {
     title: "Kaarigar Connect",
-    description:
-      "Web3 platform for service providers using KARCON tokens.",
+    description: "Web3 platform for service providers using KARCON tokens.",
     image: "/assets/kaarigar.png",
     technologies: ["NextJs", "Framer_Motion", "MUI", "Figma"],
     timeline: "2 months",
-    client: "Webllisto Tech.",
+    client: "Webllisto Tech",
   },
 ];

@@ -8,6 +8,8 @@ export interface Project {
   title: string;
   description: string;
   image: string;
+  images?: string[];
+  isMobile?: boolean;
   technologies: Array<keyof typeof TECHNOLOGIES_ICON>;
   timeline: string;
   client: string;
@@ -32,6 +34,8 @@ const ProjectsSection = () => {
               title={project.title}
               description={project.description}
               image={project.image}
+              images={project.images}
+              isMobile={project.isMobile}
               index={index}
               technologies={project.technologies}
               timeline={project.timeline}
@@ -48,6 +52,8 @@ const ProjectCard = ({
   title,
   description,
   image,
+  images,
+  isMobile,
   index,
   technologies,
   timeline,
@@ -66,13 +72,33 @@ const ProjectCard = ({
       whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
       transition={{ delay: index * 0.3, duration: 0.3 }}
     >
-      <Image
-        src={image}
-        alt="Sanjay rayon"
-        width={1000}
-        height={1000}
-        style={{ width: "100%" }}
-      />
+      <div className="relative w-full aspect-video bg-gradient-to-br from-primary/50 to-primary/30 rounded-2xl overflow-hidden flex items-center justify-center p-4">
+        {images && images.length > 1 && isMobile ? (
+          // Multiple Mobile Images Layout
+          <div className="flex items-center justify-center gap-3 h-full w-full">
+            {images.map((img, idx) => (
+              <div key={idx} className="relative h-full flex-1 max-w-[140px]">
+                <Image
+                  src={img}
+                  alt={`${title} - Screenshot ${idx + 1}`}
+                  width={300}
+                  height={600}
+                  className="object-contain h-full w-full drop-shadow-2xl"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          // Single Image Layout
+          <Image
+            src={image}
+            alt={title}
+            width={1000}
+            height={1000}
+            className={`${isMobile ? 'object-contain h-full' : 'object-cover w-full h-full'}`}
+          />
+        )}
+      </div>
       <h3 className="mt-4 text-xl text-accent">{title}</h3>
       <p className="mt-2 text-white/80">{description}</p>
 

@@ -214,7 +214,7 @@ const TeamSection = () => {
                                 className="bg-accent hover:bg-accent/90 text-primary font-semibold px-8"
                                 asChild
                             >
-                                <a href="mailto:mosaicdesigns06@gmail.com?subject=Resume Submission - [Your Name]&body=Hi Mosaic Designs Team,%0D%0A%0D%0AI am interested in joining your team. Please find my resume attached.%0D%0A%0D%0AName: [Your Full Name]%0D%0APosition of Interest: [Position]%0D%0AExperience: [Years of Experience]%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ABest regards">
+                                <a href="mailto:admin@mosaicdesigns.tech?subject=Resume Submission - [Your Name]&body=Hi Mosaic Designs Team,%0D%0A%0D%0AI am interested in joining your team. Please find my resume attached.%0D%0A%0D%0AName: [Your Full Name]%0D%0APosition of Interest: [Position]%0D%0AExperience: [Years of Experience]%0D%0A%0D%0AThank you for your consideration.%0D%0A%0D%0ABest regards">
                                     Send Your Resume
                                 </a>
                             </Button>

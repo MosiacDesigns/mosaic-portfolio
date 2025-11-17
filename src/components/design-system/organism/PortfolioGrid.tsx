@@ -5,6 +5,24 @@ import { FaExternalLinkAlt, FaGithub, FaRocket, FaAward, FaStar, FaClock, FaUser
 import { TECHNOLOGIES_ICON } from "@/lib/constants";
 import Image from "next/image";
 
+interface ProjectType {
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+    images?: string[];
+    isMobile?: boolean;
+    technologies: string[];
+    gradient: string;
+    featured?: boolean;
+    timeline: string;
+    client: string;
+    stats: { [key: string]: string };
+    services: string[];
+    achievements: string[];
+}
+
 const PortfolioGrid = () => {
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -26,7 +44,7 @@ const PortfolioGrid = () => {
         },
     };
 
-    const projects = [
+    const projects: ProjectType[] = [
         {
             id: 1,
             title: "OGGames - Web3 Board Game Platform",
@@ -53,25 +71,31 @@ const PortfolioGrid = () => {
         },
         {
             id: 2,
-            title: "Transquil - Global Travel Platform",
-            category: "Travel & Social",
-            description: "Innovative global travel platform connecting like-minded travelers worldwide. Features AI-powered matching, real-time chat, trip planning, and social networking for the modern nomad community.",
-            image: "/assets/transquil.png",
-            technologies: ["NextJs", "Framer_Motion", "Photoshop", "Figma", "Typescript"],
-            gradient: "from-blue-500 to-cyan-500",
-            timeline: "6 months",
-            client: "Transquil Global",
+            title: "Fortify - Web3 Stablecoin Yield Platform",
+            category: "Web3 & DeFi",
+            description: "Mobile web3 application for earning passive yields on stablecoins using Solana blockchain and Reflect Protocol. Features social logins, auto-yield staking, real-time tracking, and secure asset storage with bank-like security.",
+            image: "/assets/Fortify landing.png",
+            images: [
+                "/assets/Fortify landing.png",
+                "/assets/Fortify Dashboard.png",
+                "/assets/Fortify Txs.png"
+            ],
+            isMobile: true,
+            technologies: ["React", "Solana", "Figma", "Typescript"],
+            gradient: "from-purple-600 to-blue-600",
+            timeline: "Hackathon Project",
+            client: "Hackathon",
             stats: {
-                travelers: "100K+",
-                countries: "150+",
-                connections: "500K+"
+                APY: "3.71%",
+                "Stablecoins": "USDC/USDC+",
+                "Security": "Bank-grade"
             },
-            services: ["Full-Stack Development", "UI/UX Design", "Animation", "Global Deployment"],
+            services: ["Web3 Development", "Smart Contracts", "Mobile UI/UX", "DeFi Integration"],
             achievements: [
-                "🌍 Active users in 150+ countries worldwide",
-                "🤝 Facilitated 500K+ meaningful connections",
-                "🏅 Featured in Forbes '50 Best Travel Apps'",
-                "⭐ 4.9/5 rating with 50K+ reviews"
+                "🏆 Built during hackathon competition",
+                "💰 Integrated Reflect Protocol for yields",
+                "🔐 Implemented social login for Web3",
+                "⚡ Real-time balance tracking & monitoring"
             ]
         },
         {
@@ -172,18 +196,52 @@ const PortfolioGrid = () => {
                             )}
 
                             {/* Project Image */}
-                            <div className="relative h-80 overflow-hidden">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
-                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
+                            <div className="relative h-80 overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90">
+                                {project.images && project.images.length > 1 ? (
+                                    // Multiple Images Layout for Mobile Apps
+                                    project.isMobile ? (
+                                        <div className="flex items-center justify-center gap-4 h-full px-6 py-8">
+                                            {project.images.map((img, idx) => (
+                                                <div key={idx} className="relative h-full w-1/3 flex items-center justify-center">
+                                                    <div className="relative w-full h-full max-w-[180px] mx-auto">
+                                                        <Image
+                                                            src={img}
+                                                            alt={`${project.title} - Screenshot ${idx + 1}`}
+                                                            fill
+                                                            className="object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        // Multiple Images Layout for Desktop Apps
+                                        <div className="grid grid-cols-3 gap-2 h-full p-4">
+                                            {project.images.map((img, idx) => (
+                                                <div key={idx} className="relative h-full">
+                                                    <Image
+                                                        src={img}
+                                                        alt={`${project.title} - Screenshot ${idx + 1}`}
+                                                        fill
+                                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )
+                                ) : (
+                                    // Single Image Layout
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className={`${project.isMobile ? 'object-contain p-8' : 'object-cover'} group-hover:scale-110 transition-transform duration-500`}
+                                    />
+                                )}
+                                <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-10 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none`}></div>
 
                                 {/* Project Category Badge */}
-                                <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                                <div className="absolute top-6 left-6 bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium z-10">
                                     {project.category}
                                 </div>
 

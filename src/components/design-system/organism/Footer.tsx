@@ -9,6 +9,9 @@ const Footer = () => {
           <a href="https://www.instagram.com/mosaicdesigns06/" className="text-accent">
             Instagram
           </a>
+          <a href="mailto:admin@mosaicdesigns.tech" className="text-accent">
+            E-Mail
+          </a>
         </div>
         <p className="mt-4 text-sm">
           © 2024 Mosaic Design. All Rights Reserved.
