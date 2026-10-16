@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink, TextLink } from "@/components/ui/Button";
-import { ClosingCta, Greeting, ProcessGrid, ProvenanceChip, ScrollBadge, SectionHead, TapeBand } from "@/components/ui/Bits";
+import { ClosingCta, Greeting, ProcessGrid, ProvenanceChip, ScrollBadge, SectionHead } from "@/components/ui/Bits";
 import FilmCard from "@/components/ui/FilmCard";
+import StatementReveal from "@/components/home/StatementReveal";
 import Testimonials from "@/components/home/Testimonials";
 import { GoArrow, ProjectVisual } from "@/components/work/ProjectVisual";
 import { featured, homeProjects, projectHref, projects } from "@/content/projects";
 import { agencyPoints, services } from "@/content/services";
-import { capabilities, film, process, site, trustedBy } from "@/content/site";
+import { film, process, site, trustedBy } from "@/content/site";
 import { team } from "@/content/team";
 
 export default function HomePage() {
@@ -16,11 +17,11 @@ export default function HomePage() {
       {/* Hero */}
       <section className="shell grid items-end pt-[clamp(40px,6vw,96px)] lg:grid-cols-[minmax(0,1fr)_minmax(300px,440px)] lg:gap-x-14">
         <div className="lg:col-span-2">
-          <Greeting>(DESIGN · ENGINEERING · AI)</Greeting>
+          <Greeting>(DESIGN-LED PRODUCT STUDIO)</Greeting>
         </div>
         <h1 className="display contents text-[clamp(56px,10.4vw,150px)] !leading-[0.84]">
           <span className="block animate-rise lg:col-span-2">We design</span>
-          <span className="block animate-rise [animation-delay:.1s] lg:col-start-1">
+          <span className="mt-2.5 block animate-rise text-[clamp(36px,5.6vw,84px)] text-mute [animation-delay:.1s] lg:col-start-1 lg:self-start">
             &amp; build<span className="text-accent">.</span>
           </span>
         </h1>
@@ -28,8 +29,8 @@ export default function HomePage() {
           <FilmCard src={film.src} webm={film.webm} poster={film.poster} label={film.label} caption="THE FILM · HOW WE WORK" duration={film.duration} tilt="" priority />
         </div>
         <p className="mt-[clamp(32px,4vw,48px)] max-w-[560px] text-[clamp(18px,1.5vw,21px)] leading-normal lg:col-start-1">
-          <b className="font-semibold">Websites</b>, <b className="font-semibold">web apps</b> and <b className="font-semibold">AI-powered products</b> for founders,
-          product teams and agencies — designed and engineered by one senior team, from first call to launch.
+          <b className="font-semibold">UI/UX, product design and front-end</b> for websites, web apps and digital products — with the engineering, AI and Web3
+          behind them built in-house.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-[22px] lg:col-start-1">
           <ButtonLink href="/contact">Start a project →</ButtonLink>
@@ -52,7 +53,7 @@ export default function HomePage() {
       </div>
 
       <div className="mt-16">
-        <TapeBand items={capabilities} />
+        <StatementReveal />
       </div>
 
       {/* Team teaser */}
