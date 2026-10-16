@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-    ],
+    formats: ["image/avif", "image/webp"],
+  },
+  async redirects() {
+    // Old URL → new URL, so existing links and search results keep working.
+    return [{ source: "/portfolio", destination: "/work", permanent: true }];
   },
 };
 
