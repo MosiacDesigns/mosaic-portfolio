@@ -33,3 +33,35 @@ Summary of what changed in this round. The full decision log lives on the design
 - Header: hairline divider; new mobile menu with numbered links, Start a project / Book a call, email and hours.
 - Footer: email-led CTA row, new tagline, hours, Services and Studio columns, Back to top.
 - Design tokens added (`line2`, `faint`, `mat`, `mirror.*`), a `.section` spacing utility and the `.sample` style.
+
+---
+
+# Update — 16 October 2026 · Video playback & sound
+
+- Both videos now start **from the click itself** (`video.play()` in the handler, unmuted, volume 1), so browsers allow sound. Before this, playback relied on `autoPlay` after a re-render, which some browsers treat as an autoplay without a user gesture and then block or mute.
+- Alex’s testimonial audio was loudness-normalised: it was very quiet (−28 dB average, now −19 dB).
+- Added WebM (VP9/Opus) versions next to the MP4s as a fallback for browsers without H.264.
+- The player stays in the page with `preload="none"`, so nothing downloads until someone presses play. “Back to quotes” pauses Alex’s video.
+- Captions TODO removed (not needed).
+- Verified in Chromium with the autoplay policy set to “user gesture required”: both films and Alex’s video play unmuted with audio after one click.
+
+---
+
+# Update — 16 October 2026 · Brand cursor
+
+- New orange arrow cursor across the site (`src/components/ui/CustomCursor.tsx`, styles at the end of `globals.css`).
+- It switches to black (ink, with an orange outline) automatically wherever the background under the pointer is the brand orange: buttons, the tape band, the film frame, the agencies card and the orange cards. No per-element setup is needed; `data-cursor="dark"` or `data-cursor="accent"` on an element forces a colour.
+- It grows slightly over links and buttons and shrinks on click. Over text fields it steps aside so the normal text cursor shows.
+- Desktop only: it switches on only for a precise pointer that can hover (mouse or trackpad). Phones and tablets keep their normal behaviour, and the native cursor returns if JavaScript is off.
+- Verified on dark backgrounds, orange buttons, the tape band, the agencies card and the contact form, and that it stays off on touch devices.
+
+---
+
+# Update — 16 October 2026 · Enquiries to Google Sheet, About heading
+
+- **Contact form → Google Sheet.** Each enquiry adds a row to your Sheet (Received, Name, Email, Company, Service, Budget, Timeline, Message, Page, Status, Notes), with a Status dropdown (New → Replied → Call booked → Proposal sent → Won / Lost / Spam) and an optional email alert from your own Google account. Free, no database.
+  - Script and step-by-step setup: `integrations/google-sheet/` (`Code.gs` + `README.md`). The website needs `SHEET_WEBHOOK_URL` and `SHEET_SECRET`.
+  - Protected by a shared secret and the existing bot trap. Text such as “=…” is stored as plain text, never run as a spreadsheet formula.
+  - Resend email still works as an optional second channel. The visitor sees success if at least one channel accepted the enquiry; if none is set up they get the email-address fallback.
+  - Tested against a stand-in for the Apps Script endpoint, including Google’s redirect response: a real submission, a wrong secret (rejected), nothing configured (fallback) and a spam bot (silently ignored).
+- **About heading:** “Senior team.” and “Serious work.” now always sit on one line each, scaling with the screen. Checked at 320–1585px wide with no overflow.

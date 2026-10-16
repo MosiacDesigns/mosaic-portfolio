@@ -37,31 +37,32 @@ Sample copy is marked `placeholder: true` (project story sections) or `bioPlaceh
 It shows with a dashed orange outline in `npm run dev`, and is **hidden in production builds** so it can never go live by accident.
 To preview it in a production build set `NEXT_PUBLIC_SHOW_PLACEHOLDERS=1`. Replace it, then remove the flag.
 
+## Videos
+
+Both videos are self-hosted in `public/video/` and served by Vercel like any other static file (720p MP4 — H.264/AAC, 4.5 MB and 8.1 MB, `faststart` so playback begins before the download finishes — plus a WebM/VP9 fallback for browsers without H.264). Nothing loads until a visitor presses play, and playback starts from the click so it plays **with sound**.
+To swap a video, replace the file (keep it under ~10 MB: `ffmpeg -i in.mp4 -vf scale=1280:-2 -c:v libx264 -crf 27 -preset slow -c:a aac -b:a 128k -movflags +faststart out.mp4`) and its poster image.
+
 ## Contact form
 
-`POST /api/contact` validates the enquiry and emails it through [Resend](https://resend.com) (no extra package needed).
-Copy `.env.example` to `.env.local` (or set these in Vercel → Project → Settings → Environment Variables):
+`POST /api/contact` validates the enquiry and delivers it to a **Google Sheet** (one row per enquiry, with a Status column for tracking leads and an optional email alert). Optionally it can also email it through Resend.
 
-```
-RESEND_API_KEY=re_...
-CONTACT_TO=admin@mosaicdesigns.tech
-CONTACT_FROM="Mosaic Designs <hello@mosaicdesigns.tech>"   # domain must be verified in Resend
-```
+- **Google Sheet (free, recommended):** follow [`integrations/google-sheet/README.md`](integrations/google-sheet/README.md) (~10 minutes), then set `SHEET_WEBHOOK_URL` and `SHEET_SECRET`.
+- **Email via Resend (optional):** set `RESEND_API_KEY`, `CONTACT_TO` and `CONTACT_FROM` (the sending domain must be verified in Resend).
 
-Until these are set the form shows a clear error with the email address as a fallback, so no enquiry is silently lost.
+Copy `.env.example` to `.env.local` locally, or set the variables in Vercel → Project → Settings → Environment Variables.
+Until at least one is set, the form shows a clear error with the email address as a fallback, so no enquiry is silently lost.
 It includes a hidden honeypot field against spam bots.
 
 ## Deploy (Vercel)
 
 1. Push this branch and open a pull request — Vercel builds a preview automatically.
-2. Add the three environment variables above.
+2. Add the contact-form environment variables above (`SHEET_WEBHOOK_URL`, `SHEET_SECRET`).
 3. Merge to deploy. `/portfolio` permanently redirects to `/work`.
 
 ## Before launch
 
 - [ ] Fill in `src/app/privacy/page.tsx` (registered business details, provider, retention) and have it reviewed.
-- [ ] Set the three Resend environment variables in Vercel so enquiries are delivered.
-- [ ] Add captions for the Build Squad video: `public/video/buildsquad-testimonial.en.vtt`, then set `captions` in `src/content/testimonials.ts`.
+- [ ] Connect the contact form to the Google Sheet (`integrations/google-sheet/README.md`) and send a test enquiry.
 - [ ] Confirm `replyTime` in `src/content/site.ts` (currently “1 business day”).
 - [ ] Replace placeholder project stories and team bios (search for `placeholder: true` / `bioPlaceholder`).
 - [ ] Clients have approved the wording of their testimonials.

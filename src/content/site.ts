@@ -56,7 +56,8 @@ export const trustedBy = ["Build Squad", "Webllisto", "Elevated Club", "Navarata
 export const capabilities = ["Websites", "Web apps", "MVPs", "AI features", "White-label"] as const;
 
 export const film = {
-  src: "/video/mosaic-film-720.mp4",
+  src: "/video/mosaic-film-720.mp4", // H.264/AAC — Safari, Chrome, Edge, Firefox
+  webm: "/video/mosaic-film-720.webm", // VP9/Opus fallback
   poster: "/video/mosaic-film-poster.jpg",
   duration: "1:36",
   label: "Play the Mosaic Designs film, 1 minute 36 seconds",

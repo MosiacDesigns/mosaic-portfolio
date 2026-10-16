@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import clsx from "clsx";
 import { testimonials, videoTestimonial as vt } from "@/content/testimonials";
 
@@ -20,11 +20,25 @@ const slots = [
 export default function Testimonials() {
   const [idx, setIdx] = useState(0);
   const [video, setVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const q = testimonials[idx];
+  // Start playback inside the click handler so the browser allows sound.
+  const watch = () => {
+    setVideo(true);
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.volume = 1;
+    void v.play().catch(() => {});
+  };
+  const back = () => {
+    videoRef.current?.pause();
+    setVideo(false);
+  };
   const others = testimonials.map((t, i) => ({ t, i })).filter((x) => x.i !== idx);
   const pick = (i: number) => {
     setIdx(i);
-    setVideo(false);
+    if (video) back();
   };
 
   return (
@@ -46,7 +60,7 @@ export default function Testimonials() {
 
       <button
         type="button"
-        onClick={() => setVideo(true)}
+        onClick={watch}
         aria-label={`Watch ${vt.name} from ${vt.company}, video testimonial, ${vt.duration.replace(":", " minute ")} seconds`}
         className="absolute bottom-[72px] right-[7%] z-[1] hidden w-[300px] rotate-[4deg] rounded-2xl bg-accent px-[9px] pb-2.5 pt-[9px] text-left shadow-[0_40px_70px_-30px_rgba(0,0,0,0.9)] transition-transform hover:rotate-[2deg] lg:block"
       >
@@ -71,23 +85,24 @@ export default function Testimonials() {
           (WHAT CLIENTS SAY)
         </p>
 
-        {video ? (
-          <figure className="flex w-[min(820px,100%)] flex-col gap-[18px]">
-            <video src={vt.src} poster={vt.poster} controls autoPlay playsInline className="block aspect-video w-full rounded-[18px] bg-[#111]">
-              {vt.captions && <track kind="captions" src={vt.captions} srcLang="en" label="English" default />}
-            </video>
-            <figcaption className="flex flex-wrap items-center justify-between gap-3 text-base text-mute">
-              <span>
-                <span className="text-paper">{vt.name}</span>
-                <span className="px-2 text-line2">|</span>
-                {vt.company} · video testimonial
-              </span>
-              <button type="button" onClick={() => setVideo(false)} className="min-h-[44px] font-mono text-xs text-paper hover:text-accent">
-                ← BACK TO QUOTES
-              </button>
-            </figcaption>
-          </figure>
-        ) : (
+        <figure className={clsx("w-[min(820px,100%)] flex-col gap-[18px]", video ? "flex" : "hidden")}>
+          <video ref={videoRef} poster={vt.poster} preload="none" controls playsInline className="block aspect-video w-full rounded-[18px] bg-[#111]">
+            <source src={vt.src} type="video/mp4" />
+            <source src={vt.webm} type="video/webm" />
+          </video>
+          <figcaption className="flex flex-wrap items-center justify-between gap-3 text-base text-mute">
+            <span>
+              <span className="text-paper">{vt.name}</span>
+              <span className="px-2 text-line2">|</span>
+              {vt.company} · video testimonial
+            </span>
+            <button type="button" onClick={back} className="min-h-[44px] font-mono text-xs text-paper hover:text-accent">
+              ← BACK TO QUOTES
+            </button>
+          </figcaption>
+        </figure>
+
+        {!video && (
           <>
             <figure key={idx} className="flex animate-fade-up flex-col items-center gap-7">
               <blockquote className="text-[clamp(24px,2.7vw,40px)] font-medium leading-[1.22] tracking-[-0.02em]">{q.quote}</blockquote>
@@ -100,7 +115,7 @@ export default function Testimonials() {
             {q.linksVideo && (
               <button
                 type="button"
-                onClick={() => setVideo(true)}
+                onClick={watch}
                 className="inline-flex min-h-[44px] items-center gap-2.5 rounded-full border border-line2 px-[18px] font-mono text-xs tracking-[0.04em] transition-colors hover:border-paper"
               >
                 <span className="text-accent">▶</span> MORE FROM {vt.company.toUpperCase()} · {vt.name.toUpperCase()} ON VIDEO · {vt.duration}
@@ -118,7 +133,7 @@ export default function Testimonials() {
               </button>
             );
           })}
-          <button type="button" onClick={() => setVideo(true)} aria-label={`Video: ${vt.name}, ${vt.company}`} aria-pressed={video} className="flex h-11 w-7 items-center justify-center lg:hidden">
+          <button type="button" onClick={watch} aria-label={`Video: ${vt.name}, ${vt.company}`} aria-pressed={video} className="flex h-11 w-7 items-center justify-center lg:hidden">
             <span className={clsx("block text-[10px] leading-none", video ? "text-paper" : "text-faint")}>▶</span>
           </button>
         </div>

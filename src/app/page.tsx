@@ -25,7 +25,7 @@ export default function HomePage() {
           </span>
         </h1>
         <div className="order-last mx-auto mt-12 w-[88%] max-w-[480px] animate-hero-card lg:order-none lg:col-start-2 lg:row-span-2 lg:row-start-3 lg:mt-6 lg:w-full lg:self-center">
-          <FilmCard src={film.src} poster={film.poster} label={film.label} caption="THE FILM · HOW WE WORK" duration={film.duration} tilt="" priority />
+          <FilmCard src={film.src} webm={film.webm} poster={film.poster} label={film.label} caption="THE FILM · HOW WE WORK" duration={film.duration} tilt="" priority />
         </div>
         <p className="mt-[clamp(32px,4vw,48px)] max-w-[560px] text-[clamp(18px,1.5vw,21px)] leading-normal lg:col-start-1">
           <b className="font-semibold">Websites</b>, <b className="font-semibold">web apps</b> and <b className="font-semibold">AI-powered products</b> for founders,

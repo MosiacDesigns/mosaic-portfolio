@@ -19,9 +19,9 @@ export default function AboutPage() {
     <>
       <section className="shell pt-[clamp(40px,6vw,96px)]">
         <Greeting>(ABOUT THE STUDIO)</Greeting>
-        <h1 className="display text-[clamp(56px,11.6vw,170px)]">
-          <span className="block animate-rise">Senior team.</span>
-          <span className="block animate-rise [animation-delay:.1s]">
+        <h1 className="display text-[clamp(26px,8.6vw,132px)]">
+          <span className="block animate-rise whitespace-nowrap">Senior team.</span>
+          <span className="block animate-rise [animation-delay:.1s] whitespace-nowrap">
             Serious work<span className="text-accent">.</span>
           </span>
         </h1>
@@ -40,7 +40,7 @@ export default function AboutPage() {
           <p className="max-w-[380px] text-[17px] leading-relaxed text-mute">What we build, how a project runs, and what you get at the end of it.</p>
         </div>
         <div className="min-w-0 flex-[2_1_560px]">
-          <FilmCard src={film.src} poster={film.poster} label={film.label} caption="THE FILM · HOW WE WORK" duration={film.duration} tilt="-rotate-[1.5deg]" sizes="(max-width: 960px) 90vw, 60vw" />
+          <FilmCard src={film.src} webm={film.webm} poster={film.poster} label={film.label} caption="THE FILM · HOW WE WORK" duration={film.duration} tilt="-rotate-[1.5deg]" sizes="(max-width: 960px) 90vw, 60vw" />
         </div>
       </section>
 

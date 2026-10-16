@@ -67,8 +67,7 @@ export const videoTestimonial = {
   name: "Alex",
   company: "Build Squad",
   src: "/video/buildsquad-testimonial-720.mp4",
+  webm: "/video/buildsquad-testimonial-720.webm",
   poster: "/video/buildsquad-poster.jpg",
   duration: "1:31",
-  // TODO: add captions — public/video/buildsquad-testimonial.en.vtt — before launch (accessibility).
-  captions: "",
 } as const;
