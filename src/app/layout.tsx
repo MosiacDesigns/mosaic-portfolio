@@ -27,7 +27,13 @@ export const metadata: Metadata = {
     images: [{ url: "/video/mosaic-film-poster.jpg", width: 1280, height: 720, alt: "Mosaic Designs — design, engineering, intelligent technology" }],
   },
   twitter: { card: "summary_large_image", site: "@MosaicDesigns06" },
-  icons: { icon: "/favicon.ico" },
+  // The ICO must not use sizes="any", or Chrome picks it over the theme-aware SVG.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#0E0E0E" };

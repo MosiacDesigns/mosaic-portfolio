@@ -83,7 +83,7 @@ export default function Footer() {
           <span>Thanks for scrolling ✦</span>
         </div>
       </div>
-      <div aria-hidden className="-mb-[2vw] whitespace-nowrap pt-8 text-center font-display text-[20vw] font-bold leading-[0.8] tracking-[-0.04em] text-line">
+      <div aria-hidden className="pointer-events-none -mb-[2vw] select-none whitespace-nowrap pt-8 text-center font-display text-[20vw] font-bold leading-[0.8] tracking-[-0.04em] text-line">
         MOSAIC
       </div>
     </footer>

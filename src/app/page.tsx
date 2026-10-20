@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ButtonLink, TextLink } from "@/components/ui/Button";
-import { ClosingCta, Greeting, ProcessGrid, ProvenanceChip, ScrollBadge, SectionHead } from "@/components/ui/Bits";
+import { ButtonLink } from "@/components/ui/Button";
+import { ClosingCta, Greeting, ProcessGrid, ProvenanceChip, SectionHead } from "@/components/ui/Bits";
 import FilmCard from "@/components/ui/FilmCard";
 import StatementReveal from "@/components/home/StatementReveal";
 import Testimonials from "@/components/home/Testimonials";
@@ -14,82 +14,90 @@ import { team } from "@/content/team";
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="shell grid items-end pt-[clamp(40px,6vw,96px)] lg:grid-cols-[minmax(0,1fr)_minmax(300px,440px)] lg:gap-x-14">
-        <div className="lg:col-span-2">
-          <Greeting>(DESIGN-LED PRODUCT STUDIO)</Greeting>
-        </div>
-        <h1 className="display contents text-[clamp(56px,10.4vw,150px)] !leading-[0.84]">
-          <span className="block animate-rise lg:col-span-2">We design</span>
-          <span className="mt-2.5 block animate-rise text-[clamp(36px,5.6vw,84px)] text-mute [animation-delay:.1s] lg:col-start-1 lg:self-start">
-            &amp; build<span className="text-accent">.</span>
-          </span>
-        </h1>
-        <div className="order-last mx-auto mt-12 w-[88%] max-w-[480px] animate-hero-card lg:order-none lg:col-start-2 lg:row-span-2 lg:row-start-3 lg:mt-6 lg:w-full lg:self-center">
-          <FilmCard src={film.src} webm={film.webm} poster={film.poster} label={film.label} caption="THE FILM · HOW WE WORK" duration={film.duration} tilt="" priority />
-        </div>
-        <p className="mt-[clamp(32px,4vw,48px)] max-w-[560px] text-[clamp(18px,1.5vw,21px)] leading-normal lg:col-start-1">
-          <b className="font-semibold">UI/UX, product design and front-end</b> for websites, web apps and digital products — with the engineering, AI and Web3
-          behind them built in-house.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center gap-[22px] lg:col-start-1">
-          <ButtonLink href="/contact">Start a project →</ButtonLink>
-          <TextLink href="/work" className="text-[17px]">
-            See the work
-          </TextLink>
-          <ScrollBadge />
-        </div>
-      </section>
-
-      <div className="shell pt-14">
-        <div className="flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-line pt-[22px] font-mono text-[13px] text-mute">
-          <span>TRUSTED BY TEAMS AT →</span>
-          {trustedBy.map((c) => (
-            <span key={c} className="text-paper">
-              {c.toUpperCase()}
+      {/* Hero — on large screens it fills the viewport below the 81px header */}
+      <div className="flex flex-col lg:min-h-[calc(100svh-81px)]">
+        <section className="shell grid items-end pt-[clamp(40px,6vw,96px)] lg:flex-1 lg:grid-cols-[minmax(0,1fr)_minmax(300px,440px)] lg:content-center lg:gap-x-14">
+          <div className="lg:col-span-2">
+            <Greeting>(DESIGN-LED PRODUCT STUDIO)</Greeting>
+          </div>
+          <h1 className="display contents text-[clamp(56px,10.4vw,150px)] !leading-[0.84]">
+            <span className="block animate-rise lg:col-span-2">We design</span>
+            <span className="mt-2.5 block animate-rise text-[clamp(36px,5.6vw,84px)] text-mute [animation-delay:.1s] lg:col-start-1 lg:self-start">
+              &amp; build<span className="text-accent">.</span>
             </span>
-          ))}
+          </h1>
+          <div className="order-last mx-auto mt-12 w-[88%] max-w-[480px] animate-hero-card lg:order-none lg:col-start-2 lg:row-span-2 lg:row-start-3 lg:mt-6 lg:w-full lg:self-center">
+            <FilmCard src={film.src} webm={film.webm} poster={film.poster} label={film.label} caption="THE FILM · HOW WE WORK" duration={film.duration} tilt="" priority />
+          </div>
+          <p className="mt-[clamp(32px,4vw,48px)] max-w-[560px] text-[clamp(18px,1.5vw,21px)] leading-normal lg:col-start-1">
+            <b className="font-semibold">UI/UX, product design and front-end</b> for websites, web apps and digital products — with the engineering, AI and Web3
+            behind them built in-house.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-[22px] lg:col-start-1">
+            <ButtonLink href="/contact">Start a project →</ButtonLink>
+          </div>
+        </section>
+
+        <div className="shell pt-14 lg:pb-10">
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-line pt-[22px] font-mono text-[13px] text-mute">
+            <span>TRUSTED BY TEAMS AT →</span>
+            {trustedBy.map((c) => (
+              <span key={c} className="text-paper">
+                {c.toUpperCase()}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className="mt-16 lg:mt-0">
         <StatementReveal />
       </div>
 
       {/* Team teaser */}
-      <section className="shell pb-10 pt-[clamp(80px,8vw,120px)]">
-        <SectionHead n="01" label="The team" />
-        <div className="flex flex-wrap gap-x-20 gap-y-10">
-          <p className="flex-[3_1_560px] font-display text-[clamp(30px,3.6vw,54px)] font-bold leading-[1.08] tracking-[-0.02em]">
-            Design, engineering <span className="text-mute">and</span> AI at one table — so the people you brief <span className="text-accent">are</span> the people who
-            build it.
-          </p>
-          <div className="flex flex-[2_1_360px] flex-col gap-[18px] text-[17px] leading-relaxed">
-            <p>
-              Mosaic is a team of senior specialists: product design, full-stack engineering and AI engineering, with operations keeping every project on
-              scope and on time.
+      <div className="border-b border-line bg-card">
+        <section className="shell py-[clamp(80px,8vw,120px)]">
+          <SectionHead n="01" label="The team" />
+          <div className="flex flex-wrap gap-x-20 gap-y-10">
+            <p className="flex-[3_1_560px] font-display text-[clamp(30px,3.6vw,54px)] font-bold leading-[1.08] tracking-[-0.02em]">
+              Design, engineering <span className="text-mute">and</span> AI at one table — so the people you brief <span className="text-accent">are</span> the people who
+              build it.
             </p>
-            <p className="text-mute">No account managers in between. You talk to the designer and engineers doing the work.</p>
-            <Link href="/about" className="mt-1.5 font-semibold transition-colors hover:text-accent">
-              Meet the team →
-            </Link>
-          </div>
-        </div>
-        <div className="mt-16 grid grid-cols-2 border-t-[1.5px] border-paper lg:grid-cols-4">
-          {team.map((t) => (
-            <div key={t.name} className="flex flex-col gap-2.5 border-b border-line py-[26px] pr-6">
-              <Image src={t.photo} alt="" width={64} height={64} className="mb-1.5 h-16 w-16 rounded-full object-cover object-[center_30%] contrast-[1.08] grayscale" />
-              <span className="font-mono text-xs uppercase text-accent">{t.area}</span>
-              <span className="display text-[clamp(20px,2vw,26px)] !leading-none">{t.name}</span>
-              <span className="text-[15px] leading-snug text-mute">{t.role}</span>
-              <span className="font-mono text-xs">{t.years} YEARS</span>
+            <div className="flex flex-[2_1_360px] flex-col gap-[18px] text-[17px] leading-relaxed">
+              <p>
+                Mosaic is a team of senior specialists: product design, full-stack engineering and AI engineering, with operations keeping every project on
+                scope and on time.
+              </p>
+              <p className="text-mute">No account managers in between. You talk to the designer and engineers doing the work.</p>
+              <Link href="/about" className="mt-1.5 font-semibold transition-colors hover:text-accent">
+                Meet the team →
+              </Link>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+          <div className="mt-16 grid grid-cols-2 border-t-[1.5px] border-paper lg:grid-cols-4">
+            {team.map((t) => (
+              <div key={t.name} className="group border-b border-line py-[26px] pr-6">
+                <div className="flex origin-left flex-col gap-2.5 transition-transform duration-300 ease-out group-hover:scale-[1.04]">
+                  <Image
+                    src={t.photo}
+                    alt=""
+                    width={64}
+                    height={64}
+                    className="mb-1.5 h-16 w-16 rounded-full object-cover object-[center_30%] contrast-[1.08] grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+                  />
+                  <span className="font-mono text-xs uppercase text-accent">{t.area}</span>
+                  <span className="display text-[clamp(20px,2vw,26px)] !leading-none">{t.name}</span>
+                  <span className="text-[15px] leading-snug text-mute">{t.role}</span>
+                  <span className="font-mono text-xs">{t.years} YEARS</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
 
       {/* Selected work */}
-      <section className="shell pb-[140px] pt-[clamp(80px,8vw,120px)]">
+      <section className="shell py-[clamp(80px,8vw,120px)]">
         <SectionHead n="02" label="Selected work" right={`ALL ${projects.length} PROJECTS →`} href="/work" />
         <Link href={projectHref(featured)} className="group mb-7 flex flex-wrap items-center gap-8 rounded-[28px] bg-mirror p-[clamp(28px,4vw,56px)] text-mirror-ink">
           <span className="flex min-w-0 flex-[1_1_380px] flex-col gap-[18px]">
@@ -132,7 +140,7 @@ export default function HomePage() {
                 <GoArrow />
               </span>
               <span className="display text-[clamp(28px,2.6vw,40px)] !leading-[0.95] transition-colors group-hover:text-accent">{p.title}</span>
-              <span className="max-w-[560px] text-base leading-normal">{p.summary}</span>
+              <span className="max-w-[560px] flex-1 text-base leading-normal">{p.summary}</span>
               <span className="flex flex-wrap justify-between gap-x-[22px] gap-y-2 border-t border-line pt-3 font-mono text-xs text-mute">
                 <span>{p.cardMeta}</span>
                 <span className="text-paper">READ THE STORY →</span>
@@ -145,7 +153,7 @@ export default function HomePage() {
       <Testimonials />
 
       {/* What we build */}
-      <section className="shell pb-10 pt-[clamp(80px,8vw,120px)]">
+      <section className="shell py-[clamp(80px,8vw,120px)]">
         <SectionHead n="04" label="What we build" right="ALL SERVICES →" href="/services" />
         <div className="border-t-[1.5px] border-paper">
           {services.map((s) => (
@@ -166,37 +174,41 @@ export default function HomePage() {
       </section>
 
       {/* Agencies */}
-      <section className="shell pb-10 pt-[clamp(80px,8vw,120px)]">
-        <div className="flex flex-wrap items-start gap-x-16 gap-y-8 rounded-[28px] border border-line bg-card p-[clamp(28px,4vw,56px)]">
-          <div className="flex-[1_1_380px]">
-            <span className="mb-[18px] block font-mono text-[13px] text-mute">
-              <span className="text-accent">05</span> — FOR AGENCIES
-            </span>
-            <h2 className="display text-[clamp(36px,4vw,60px)] !leading-[0.95]">Your build partner, behind the scenes.</h2>
-          </div>
-          <div className="flex-[1_1_380px]">
-            <p className="mb-[22px] text-[17px] leading-relaxed">
-              More client work than developers? We design and build white-label under your brand — for overflow, one-off projects or ongoing support.
-            </p>
-            {agencyPoints.map((a) => (
-              <span key={a} className="flex justify-between border-t border-line py-3.5 text-base">
-                <span>{a}</span>
-                <span className="text-accent">✦</span>
+      <div className="border-y border-line bg-card">
+        <section className="shell py-[clamp(80px,8vw,120px)]">
+          <div className="flex flex-wrap items-start gap-x-16 gap-y-8 rounded-[28px] border border-line bg-ink p-[clamp(28px,4vw,56px)]">
+            <div className="flex-[1_1_380px]">
+              <span className="mb-[18px] block font-mono text-[13px] text-mute">
+                <span className="text-accent">05</span> — FOR AGENCIES
               </span>
-            ))}
-            <Link href="/services#agencies" className="mt-[22px] inline-block font-semibold transition-colors hover:text-accent">
-              Talk about a partnership →
-            </Link>
+              <h2 className="display text-[clamp(36px,4vw,60px)] !leading-[0.95]">Your build partner, behind the scenes.</h2>
+            </div>
+            <div className="flex-[1_1_380px]">
+              <p className="mb-[22px] text-[17px] leading-relaxed">
+                More client work than developers? We design and build white-label under your brand — for overflow, one-off projects or ongoing support.
+              </p>
+              {agencyPoints.map((a) => (
+                <span key={a} className="flex justify-between border-t border-line py-3.5 text-base">
+                  <span>{a}</span>
+                  <span className="text-accent">✦</span>
+                </span>
+              ))}
+              <Link href="/services#agencies" className="mt-[22px] inline-block font-semibold transition-colors hover:text-accent">
+                Talk about a partnership →
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <section className="shell pb-10 pt-[clamp(80px,8vw,120px)]">
+      <section className="shell py-[clamp(80px,8vw,120px)]">
         <SectionHead n="06" label="How a project runs" right="FULL PROCESS →" href="/services#process" />
         <ProcessGrid steps={process} />
       </section>
 
-      <ClosingCta kicker="Got an idea?" title="Let’s make it real" secondary={{ label: "Book a discovery call", href: site.calendly }} />
+      <div className="border-t border-line bg-card">
+        <ClosingCta kicker="Got an idea?" title="Let’s make it real" secondary={{ label: "Book a discovery call", href: site.calendly }} />
+      </div>
     </>
   );
 }

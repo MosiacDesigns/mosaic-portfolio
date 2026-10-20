@@ -46,23 +46,6 @@ export function TapeBand({ items, repeat = 6 }: { items: readonly string[]; repe
   );
 }
 
-/** Rotating circular "SCROLL · SEE THE WORK" badge. Decorative. */
-export function ScrollBadge() {
-  return (
-    <span aria-hidden className="relative hidden h-28 w-28 items-center justify-center md:inline-flex">
-      <svg className="absolute animate-spin-slow" width="112" height="112" viewBox="0 0 112 112">
-        <defs>
-          <path id="scroll-circle" d="M56,56 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" />
-        </defs>
-        <text className="font-mono" fontSize="10.5" letterSpacing="2.6" fill="#A39E94">
-          <textPath href="#scroll-circle">SCROLL · SEE THE WORK · SCROLL · </textPath>
-        </text>
-      </svg>
-      <span className="text-[22px]">↓</span>
-    </span>
-  );
-}
-
 /** Big centred sign-off used at the bottom of most pages. */
 export function ClosingCta({
   kicker,
