@@ -39,7 +39,7 @@ export type Project = {
   stack: string[];
   mat: string; // background colour of the image panel
   visual: Visual;
-  live?: { href: string; label: string };
+  live?: { href: string; label: string; code?: string }; // code: access code shown beside the link
   story: Story;
   next: string;
 };
@@ -51,15 +51,6 @@ const fortifyScreens = [
   { src: "/images/fortify-2.webp", alt: "Fortify dashboard showing USDC and USDC+ balances" },
   { src: "/images/fortify-3.webp", alt: "Fortify recent activity with conversions via Reflect Protocol" },
 ];
-
-const sampleValue = (what: string) => ({
-  placeholder: true,
-  items: [
-    { k: "[ ]", d: `[Outcome 1 — ${what}]` },
-    { k: "[ ]", d: "[Outcome 2 — a result, metric or piece of client feedback]" },
-    { k: "[ ]", d: "[Outcome 3 — what the client could do afterwards that they couldn’t before]" },
-  ],
-});
 
 export const projects: Project[] = [
   {
@@ -79,7 +70,7 @@ export const projects: Project[] = [
     stack: ["Speech-to-text", "LLMs", "Full-stack"],
     mat: "#24201B",
     visual: img("/images/traders-mirror-film.jpg", "Trader’s Mirror landing page: Talk it out. Mira hears it.", 1280, 730),
-    live: { href: "https://traders-mirror.mosaicdesigns.tech", label: "Visit the beta" },
+    live: { href: "https://traders-mirror.mosaicdesigns.tech", label: "Visit the beta", code: "TM-BETA-2026" },
     next: "oggames",
     story: {
       oneLiner: "The trading journal that listens.",
@@ -92,17 +83,26 @@ export const projects: Project[] = [
         { label: "Platform", value: "Web app" },
         { label: "Stack", value: "Speech-to-text · LLMs · Full-stack" },
       ],
-      business: { text: "[Who Trader’s Mirror is for, and why traders struggle to keep an honest journal.]", placeholder: true },
-      statement: { text: "[How might we … — the one-line challenge the product answers.]", placeholder: true },
+      business: {
+        text: "Trader’s Mirror is our own AI trading journal, built for forex, crypto and prop-firm traders who want to judge the quality of their decisions — not just their profit and loss. Most traders know they should journal, but logging every trade, the emotions behind it and the rules they broke takes time, so the habit rarely sticks. Trader’s Mirror replaces the forms with a voice note: talk through the trade and Mira turns it into structured data and a behavioural review. It is about discipline and execution, never trading signals.",
+      },
+      statement: { text: "How might we make honest trade reflection effortless — and turn it into measurable behavioural insight?" },
       approach: {
         text: "Traders talk through a trade the moment it closes. Mira, the AI assistant, extracts the details, scores seven behaviour KPIs and tracks rules across projects and challenges — no forms, no advice, just an honest mirror.",
       },
-      value: sampleValue("e.g. beta users onboarded, time saved per journal entry"),
+      value: {
+        items: [
+          { k: "Voice", d: "A spoken reflection after each trade replaces a long journal form." },
+          { k: "7 KPIs", d: "Every trade gets seven behaviour scores, an overall execution score, strengths and areas to improve." },
+          { k: "Beta", d: "Live in private beta: traders group trades by project or challenge and track discipline and rule breaks over time." },
+        ],
+      },
       technical: {
-        placeholder: true,
         notes: [
-          { title: "[Voice capture]", text: "[how audio is captured and transcribed]" },
-          { title: "[Extraction & scoring]", text: "[how the LLM structures a trade and scores behaviour]" },
+          { title: "Speech-to-text", text: "spoken reflections are transcribed before any analysis runs." },
+          { title: "LLM analysis", text: "LLM workflows extract structured trade details, assess behaviour and write the review." },
+          { title: "Project-level context", text: "trades, rules, violations and performance history are organised around each trading project." },
+          { title: "AI cost visibility", text: "every model call is logged with its cost, and a credit system keeps usage visible." },
         ],
       },
       servicesLink: { label: "See AI services", href: "/services#ai" },
@@ -117,11 +117,11 @@ export const projects: Project[] = [
     chip: "CLIENT",
     summary: "A Solana board-game platform with on-chain game pieces, token rewards and tournaments — designed and built end to end.",
     meta: [
-      { label: "Client", value: "OGGames" },
+      { label: "Client", value: "Build Squad" },
       { label: "Timeline", value: "4 months" },
     ],
     cardMeta: "WEB3 PLATFORM · 4 MONTHS",
-    stack: ["Next.js", "NestJS", "Redis", "PostgreSQL", "Solana", "Figma"],
+    stack: ["Next.js", "NestJS", "Redis", "PostgreSQL", "Solana", "Anchor", "Web3Auth", "Figma"],
     mat: "#1E1D1B",
     visual: img("/images/oggames.jpg", "OG Games: chess landing page"),
     next: "virinchi",
@@ -129,22 +129,31 @@ export const projects: Project[] = [
       oneLiner: "Classic board games, rebuilt for Solana.",
       accent: "#FF5B2E",
       overview: [
-        { label: "Client", value: "OGGames" },
+        { label: "Client", value: "Build Squad" },
         { label: "Sector", value: "Gaming · Web3" },
         { label: "Timeline", value: "4 months" },
         { label: "Our role", value: "Product design, full-stack & Web3" },
         { label: "Platform", value: "Web" },
         { label: "Stack", value: "Next.js · NestJS · Redis · PostgreSQL · Solana" },
       ],
-      business: { text: "[Who OGGames are and what problem they brought to us.]", placeholder: true },
-      statement: { text: "[The one-line challenge.]", placeholder: true },
+      business: {
+        text: "OGGames is a Solana gaming platform we built for Build Squad, with chess at its core. Players create a game, invite an opponent, play in real time and wager tokens on the result — without wrestling with crypto onboarding first. Behind that sit matchmaking, live game state and on-chain transactions that all have to stay in step, plus the OGG token that powers participation and rewards.",
+      },
+      statement: { text: "How might we make competitive on-chain chess feel easy — without compromising real-time play or the integrity of every wager?" },
       approach: { text: "A Solana board-game platform with on-chain game pieces, token rewards and tournaments, designed in Figma and built on Next.js, NestJS, Redis and PostgreSQL." },
-      value: sampleValue("e.g. launch, players, tournaments run"),
+      value: {
+        items: [
+          { k: "4 months", d: "Designed and built the Solana board-game platform end to end." },
+          { k: "~$800K", d: "Reported peak fully diluted valuation of the OGG token (August 2025 snapshot)." },
+          { k: "4,300+", d: "On-chain OGG token transfers, with 98 holders (August 2025 snapshot)." },
+        ],
+      },
       technical: {
-        placeholder: true,
         notes: [
-          { title: "[On-chain game pieces]", text: "[how pieces and rewards live on Solana]" },
-          { title: "[Real-time play]", text: "[how Redis and NestJS keep games in sync]" },
+          { title: "Real-time multiplayer", text: "Next.js on the front end and NestJS behind it, with WebSockets carrying every move live." },
+          { title: "On-chain wagering", text: "Solana smart contracts written in Anchor handle wagers and token transfers." },
+          { title: "Wallet-less onboarding", text: "Web3Auth gives players Solana access without a seed-phrase-first sign-up." },
+          { title: "Game-state services", text: "NestJS services run matchmaking, socket rooms and bet verification, with Redis and PostgreSQL holding game state." },
         ],
       },
       servicesLink: { label: "See Web3 services", href: "/services#web3" },
@@ -163,7 +172,7 @@ export const projects: Project[] = [
       { label: "Role", value: "Web design & front end" },
     ],
     cardMeta: "COMPANY WEBSITE",
-    stack: ["Web design", "Front end"],
+    stack: ["Web design", "Next.js", "Tailwind CSS"],
     mat: "#3A0F5C",
     visual: img("/images/virinchi.jpg", "Virinchi Software homepage: We turn ideas into scalable AI powered products", 1600, 899),
     live: { href: "https://www.virinchisoftware.com", label: "Visit live site" },
@@ -176,12 +185,27 @@ export const projects: Project[] = [
         { label: "Sector", value: "Software services" },
         { label: "Our role", value: "Web design & front end" },
         { label: "Platform", value: "Website" },
+        { label: "Stack", value: "Next.js · Tailwind CSS" },
       ],
-      business: { text: "[Who Virinchi are and what their old site was missing.]", placeholder: true },
-      statement: { text: "[The one-line challenge.]", placeholder: true },
+      business: {
+        text: "Virinchi Software builds software and digital products, with AI at the centre of its offer. Their website had to cover a lot — services, industries, technologies and case studies — without reading like a list of disconnected services. We designed it and built the front end, giving prospective clients a clear route from what Virinchi can do to the work that proves it.",
+      },
+      statement: { text: "How might we turn a broad software offering into a clear, credible website that helps clients find the right expertise?" },
       approach: { text: "A website that presents services, industries, technologies and case studies under an AI-forward brand, with clear routes into each." },
-      value: sampleValue("e.g. launch date, enquiries, pages shipped"),
-      technical: { placeholder: true, notes: [{ title: "[Build]", text: "[framework, CMS, performance work]" }] },
+      value: {
+        items: [
+          { k: "Live", d: "Published the redesigned company website at virinchisoftware.com." },
+          { k: "One site", d: "Brought software development, AI solutions and digital marketing together under one company website." },
+          { k: "Clear", d: "Organised services, technologies and case studies into dedicated sections for prospective clients to explore." },
+        ],
+      },
+      technical: {
+        notes: [
+          { title: "Front-end implementation", text: "the approved design translated into a live, navigable website." },
+          { title: "Content structure", text: "services, industries, technologies and case studies each have their own dedicated pages." },
+          { title: "Next.js & Tailwind CSS", text: "server-rendered App Router pages, utility-first styling and automatically optimised images." },
+        ],
+      },
       quote: {
         quote:
           "Working with the team was a great experience. They understood our technical requirements quickly and approached the challenges with professionalism. Their ability to combine clean implementation with practical problem-solving made the collaboration seamless.",
@@ -218,11 +242,24 @@ export const projects: Project[] = [
         { label: "Our role", value: "Design & front end" },
         { label: "Stack", value: "Next.js · Framer Motion · MUI · Figma" },
       ],
-      business: { text: "[Who the platform serves and the problem it solves.]", placeholder: true },
-      statement: { text: "[The one-line challenge.]", placeholder: true },
+      business: {
+        text: "Kaarigar Connect, built for Webllisto Tech, connects skilled service professionals with the clients who need them. The hard part is trust on both sides: clients need a way to judge who they are hiring, and professionals need their track record to win them future work. The platform answers with KARCON tokens, smart contracts and a reputation system. We handled the design and front end.",
+      },
+      statement: { text: "How might we help clients find trusted service professionals through a marketplace with verifiable reputation?" },
       approach: { text: "A marketplace connecting service professionals with clients through KARCON tokens, smart contracts and a reputation system." },
-      value: sampleValue("e.g. launch, listings, categories"),
-      technical: { placeholder: true, notes: [{ title: "[Tokens & reputation]", text: "[how KARCON and the reputation system work]" }] },
+      value: {
+        items: [
+          { k: "2 months", d: "Delivered the marketplace design and front end within a two-month engagement." },
+          { k: "2-sided", d: "Designed an interface that connects clients with the service professionals they need." },
+          { k: "Trust", d: "Designed reputation into the core of the marketplace experience." },
+        ],
+      },
+      technical: {
+        notes: [
+          { title: "Component system", text: "Next.js and MUI form the foundation of the interface." },
+          { title: "Motion", text: "Framer Motion drives transitions and feedback across the marketplace." },
+        ],
+      },
       servicesLink: { label: "See product services", href: "/services#mvp" },
     },
   },
@@ -269,7 +306,13 @@ export const projects: Project[] = [
         { title: "Quick actions", text: "Add, send, grow and convert from one row of controls." },
         { title: "Clear activity", text: "Every transfer and conversion listed, with a link to the transaction." },
       ],
-      value: sampleValue("e.g. working product shipped within the hackathon timeframe"),
+      value: {
+        items: [
+          { k: "1 month", d: "Designed and built within the hackathon’s one-month window." },
+          { k: "No seed", d: "Social login replaced seed-phrase onboarding for first-time users." },
+          { k: "One view", d: "Auto-yield and real-time balances brought together in a single interface." },
+        ],
+      },
       technical: {
         notes: [
           { title: "Wallet-free onboarding", text: "social login in place of seed phrases, so first-time users get started in seconds." },
@@ -292,16 +335,17 @@ export const projects: Project[] = [
     category: "Portfolio website",
     tags: ["Websites"],
     provenance: "In-house",
-    chip: "IN-HOUSE",
+    chip: "IN-HOUSE · LIVE",
     summary: "The portfolio of Sanjay Meena, our senior product designer — interactive animations, transitions and dynamic galleries.",
     meta: [
       { label: "For", value: "Sanjay Meena (our team)" },
       { label: "Timeline", value: "3 months" },
     ],
     cardMeta: "PORTFOLIO WEBSITE · 3 MONTHS",
-    stack: ["Framer Motion", "Figma", "HTML", "CSS", "JavaScript"],
+    stack: ["Framer", "Figma"],
     mat: "#1E1D1B",
     visual: img("/images/designer-portfolio.jpg", "Designer portfolio homepage"),
+    live: { href: "https://www.sanjayrayon.com", label: "Visit the portfolio" },
     next: "spine",
     story: {
       oneLiner: "A portfolio that moves like the work it shows.",
@@ -310,13 +354,26 @@ export const projects: Project[] = [
         { label: "For", value: "Sanjay Meena (our team)" },
         { label: "Timeline", value: "3 months" },
         { label: "Platform", value: "Website" },
-        { label: "Stack", value: "Framer Motion · Figma · HTML · CSS · JavaScript" },
+        { label: "Stack", value: "Framer · Figma" },
       ],
-      business: { text: "[The brief: what the portfolio needed to show and to whom.]", placeholder: true },
-      statement: { text: "[The one-line challenge.]", placeholder: true },
-      approach: { text: "A portfolio with interactive animations, transitions and dynamic galleries, designed in Figma and built with Framer Motion." },
-      value: sampleValue("e.g. what the portfolio led to"),
-      technical: { placeholder: true, notes: [{ title: "[Motion]", text: "[how transitions and galleries were built]" }] },
+      business: {
+        text: "This is the portfolio of Sanjay Meena, our senior product designer. A product designer’s portfolio has to do more than list projects: it has to show the quality of the work, make each case study easy to explore and carry a recognisable point of view. So instead of static thumbnails, the site leans on motion, transitions and dynamic galleries.",
+      },
+      statement: { text: "How might we turn a product designer’s portfolio into an interactive experience that demonstrates the work itself?" },
+      approach: { text: "A portfolio with interactive animations, transitions and dynamic galleries, designed in Figma and built in Framer." },
+      value: {
+        items: [
+          { k: "3 months", d: "Developed the portfolio over a three-month engagement." },
+          { k: "Motion", d: "Animation and transitions make the portfolio more engaging to explore." },
+          { k: "Galleries", d: "Project work presented through dynamic galleries, not just static thumbnails." },
+        ],
+      },
+      technical: {
+        notes: [
+          { title: "Built in Framer", text: "designed, animated and published in Framer, so new work can go up without a code release." },
+          { title: "Motion system", text: "Framer’s interactions and page transitions drive the galleries and animation." },
+        ],
+      },
       servicesLink: { label: "See website services", href: "/services#web" },
     },
   },
@@ -326,7 +383,7 @@ export const projects: Project[] = [
     category: "Agency website",
     tags: ["Websites"],
     provenance: "Pitch build",
-    chip: "PITCH BUILD",
+    chip: "PITCH BUILD · LIVE",
     summary:
       "A pitch build for a strategy-led creative consultancy — striped kinetic display type over an immersive, glitching video background, with sound on demand.",
     meta: [
@@ -334,7 +391,7 @@ export const projects: Project[] = [
       { label: "Focus", value: "Motion & front end" },
     ],
     cardMeta: "AGENCY WEBSITE · MOTION",
-    stack: ["Web design", "Front end", "Motion"],
+    stack: ["Web design", "Next.js", "Tailwind CSS", "Vercel"],
     mat: "#1E1D1B",
     visual: img("/images/spine.jpg", "Spine Creative Agency homepage with striped display lettering over a dark video background", 1600, 766),
     live: { href: "https://spine.mosaicdesigns.tech", label: "See the build" },
@@ -347,12 +404,28 @@ export const projects: Project[] = [
         { label: "Sector", value: "Creative agency" },
         { label: "Focus", value: "Motion & front end" },
         { label: "Platform", value: "Website" },
+        { label: "Stack", value: "Next.js · Tailwind CSS · Vercel" },
       ],
-      business: { text: "[The brief: who the prospective client was and what they needed to say.]", placeholder: true },
-      statement: { text: "[The one-line challenge.]", placeholder: true },
+      business: {
+        text: "Spine is a pitch build we made for a prospective client: a strategy-led creative consultancy. The site needed to prove their creative identity through the experience itself, not describe it inside a conventional agency layout. Our direction pairs striped kinetic typography with an immersive, glitching video background and optional sound — a live concept showing how motion, type and atmosphere can work together as a brand.",
+      },
+      statement: { text: "How might we make a creative consultancy’s website feel like an expressive brand experience rather than an agency template?" },
       approach: { text: "Striped kinetic display type over an immersive, glitching video background, with sound on demand." },
-      value: sampleValue("e.g. what the pitch showed the client"),
-      technical: { placeholder: true, notes: [{ title: "[Video & type]", text: "[how the background and kinetic type were built]" }] },
+      value: {
+        items: [
+          { k: "Live", d: "Published the creative pitch build at spine.mosaicdesigns.tech." },
+          { k: "Kinetic", d: "Striped, animated typography as the central visual feature." },
+          { k: "Glitch", d: "A glitching video background with optional sound demonstrates an experimental creative direction." },
+        ],
+      },
+      technical: {
+        notes: [
+          { title: "Video atmosphere", text: "an immersive video background sets the tone for the whole experience." },
+          { title: "Glitch effects", text: "glitching treatments reinforce the experimental creative direction." },
+          { title: "User-controlled sound", text: "audio is available on demand, so visitors choose whether to turn it on." },
+          { title: "Next.js on Vercel", text: "built in Next.js and Tailwind CSS, deployed on Vercel." },
+        ],
+      },
       servicesLink: { label: "See website services", href: "/services#web" },
     },
   },

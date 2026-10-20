@@ -163,10 +163,10 @@ export default function ProjectStoryPage({ params }: { params: { slug: string } 
             <section id="value" className="flex scroll-mt-8 flex-col gap-6">
               <Label id="value" />
               <Sample on={st.value.placeholder}>
-                <div className="grid gap-5 md:grid-cols-3">
+                <div className="grid gap-5 xl:grid-cols-3">
                   {st.value.items.map((v, i) => (
                     <div key={i} className="flex flex-col gap-2.5 rounded-3xl bg-card p-[26px]">
-                      <span className="font-display text-[44px] font-bold leading-none text-accent">{v.k}</span>
+                      <span className="font-display text-[40px] font-bold leading-none text-accent">{v.k}</span>
                       <span className="text-[15px] leading-normal text-mute">{v.d}</span>
                     </div>
                   ))}
@@ -240,7 +240,12 @@ export default function ProjectStoryPage({ params }: { params: { slug: string } 
 
       <section className="shell mt-[clamp(80px,8vw,120px)] flex flex-wrap items-center justify-between gap-6 border-t border-line py-8">
         <span className="text-[17px] text-mute">Want something like this for your product?</span>
-        <div className="flex flex-wrap gap-3.5">
+        <div className="flex flex-wrap items-center gap-3.5">
+          {p.live?.code && (
+            <span className="font-mono text-xs text-mute">
+              ACCESS CODE · <span className="select-all text-paper">{p.live.code}</span>
+            </span>
+          )}
           {p.live && (
             <ButtonLink href={p.live.href} size="md" variant="outline">
               {p.live.label} ↗
